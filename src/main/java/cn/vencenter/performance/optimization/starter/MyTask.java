@@ -1,6 +1,7 @@
 package cn.vencenter.performance.optimization.starter;
 
 import cn.hutool.core.util.RandomUtil;
+import com.google.common.base.Stopwatch;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -21,8 +22,10 @@ public class MyTask {
     // 秒 分 时  日 月 周(星期) 年    springtask 不支持年份  quartz支持
     @Scheduled(cron = "0/10 * * * * ?")
     public void sc() {
+        Stopwatch stopwatch = Stopwatch.createStarted();
         list.add(RandomUtil.randomInt(10));
-        System.out.println(list);
+        stopwatch.stop();
+        System.out.println(stopwatch.toString());
     }
 
 
